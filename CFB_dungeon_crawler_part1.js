@@ -3,7 +3,7 @@
 // Run in node.js
 
 // npm install colors
-// npm install promp-sync
+// npm install prompt-sync
 const prompt = require("prompt-sync")({ sigint: true });
 const colors = require("colors/safe");
 
@@ -135,7 +135,7 @@ function move(input) {
     revealSquare(row, col);
     row = oldRow;
     col = oldCol;
-    console.log(colors.red(`You can't move ${input}, pick another direction.`));
+    console.log(colors.red(`You can't move ${lowerCaseInput}, pick another direction.`));
   }
 
   revealSquare(row, col);
