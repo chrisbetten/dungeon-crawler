@@ -28,6 +28,8 @@ level = level
   .slice(1)
   .map((row) => row.split(""));
 
+//console.log(level);
+
 const dungeon = level.map((row) =>
   row.map((symbol) => {
     const type = TILE_TYPES[symbol];
@@ -39,6 +41,8 @@ const dungeon = level.map((row) =>
   })
 );
 
+//console.log(dungeon);
+
 const maxRow = dungeon.length - 1;
 const maxCol = dungeon[0].length - 1;
 
@@ -48,14 +52,19 @@ let col = 0;
 dungeon[row][col].isRevealed = true;
 console.log(colors.cyan(`\nStarting position - Row: ${row}, Col: ${col}`));
 
-// Logs the dungeon map you input to command prompt
+// Logs the dungeon map to command prompt
 function printMap() {
   let rows = [];
+  // tileRow = index, arrRow = element (array of tiles)
   for (const [tileRow, arrRow] of dungeon.entries()) {
     const rowTiles = [];
+    // We need both index and element to check if tile is current position (index),
+    // if tile is wall or not, and if tile is revealed (element)
+    // tileCol = index, tile = element
     for (const [tileCol, tile] of arrRow.entries()) {
       if (tile.isRevealed) {
         const character = tile.type === "wall" ? "X" : "o";
+        // Checks if tile is current position - if yes, changes colour to red
         const colored =
           row === tileRow && col === tileCol
             ? colors.red(character)
@@ -67,6 +76,7 @@ function printMap() {
     }
     rows.push(rowTiles);
   }
+  // Separates each tile with a space, and each row with a new line
   console.log(rows.map((row) => row.join(" ")).join("\n"));
 }
 
